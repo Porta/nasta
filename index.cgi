@@ -1,5 +1,5 @@
 #! /usr/bin/perl
 use Data::Dumper;
 use lib 'lib';
-use Dispatch;
-Dispatch->dispatch();
+use Nasta::Dispatch;
+Nasta::Dispatch->dispatch();
