@@ -1,1 +1,11 @@
- 
+dispatch_debug: 1
+dispatch_prefix: Controllers
+#dispath_table: 
+#  - home: {app: "Home",rm: index}
+#  - login:{app: "Account", rm: login}
+#  - ':app/:rm': ' '
+dispatch_table: 
+  - home: {app: home, rm: index}
+  - login: {app: Account, rm: login}
+  - :app/:rm: {}
+

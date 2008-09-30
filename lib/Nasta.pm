@@ -8,9 +8,9 @@ use Data::Dumper;
 use Nasta::Views qw(template);
 use Nasta::Models;
 
-sub start: Runmode{
-	my $self = shift;
-	return $self->dump_html;
+sub start : Runmode {
+    my $self = shift;
+    return $self->dump_html;
 }
 
 1;

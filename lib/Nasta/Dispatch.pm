@@ -1,18 +1,15 @@
 package Nasta::Dispatch;
 use base 'CGI::Application::Dispatch';
-
-sub dispatch_args{
-	return {	
-		prefix      => 'Controllers',
-		args_to_new => {
-			cfg_file	=> 'config/config.yml'
-		},
-		debug		=> 1,
-		table		=> [
-			''				=> { app => 'Home', rm => 'index'},
-			'login'			=> { app => 'Account', rm => 'login' },
-			':app/:rm'		=> {},
-		],
-	}
-};
+use Config::YAML;
+use Data::Dumper;
+sub dispatch_args {
+    my $c = Config::YAML->new(config => 'config/config.yml');
+    warn Dumper($c);
+    return {
+        prefix      => $c->get_dispatch_prefix,
+        args_to_new => { cfg_file => 'config/config.yml' },
+        debug       => $c->get_dispatch_debug,
+        table       => $c->get_dispatch_table,
+    };
+}
 1;
