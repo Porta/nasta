@@ -2,7 +2,9 @@ package Nasta;
 use base 'CGI::Application';
 
 use CGI::Application::Plugin::ConfigAuto (qw/cfg/);
+use CGI::Application::Plugin::Redirect;
 use CGI::Application::Plugin::Routes;
+use CGI::Application::Plugin::Session;
 
 use Data::Dumper;
 
