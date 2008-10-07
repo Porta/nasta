@@ -6,7 +6,7 @@ sub dispatch_args {
     my $c = Config::YAML->new(config => 'config/config.yml');
     return {
         prefix      => $c->get_dispatch_prefix,
-        args_to_new => { cfg_file => 'config/config.yml' },
+        args_to_new => { cfg_file => 'config/config.yml', tmpl_path => 'Views', },
         debug       => $c->get_dispatch_debug,
         table       => [
                         ''         =>  {app => 'Home',     rm => 'index'},

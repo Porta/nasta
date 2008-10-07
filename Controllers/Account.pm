@@ -1,9 +1,16 @@
 package Controllers::Account;
 use base 'Nasta';
 
-sub login : Runmode {
+sub setup{
+    my $self = shift;
+    $self->routes([
+        '/login' =>  'login',
+        ]);
+}
+
+sub login {
     my $self     = shift;
-    my $template = template('main.htm');
+    my $template = $self->load_tmpl('login.htm');
     my $user     = new User;
     $user->name('mike');
     $template->param( name => $user->name );

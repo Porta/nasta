@@ -2,9 +2,16 @@ package Controllers::Home;
 use base 'Nasta';
 use Data::Dumper;
 
-sub index : Runmode {
+sub setup{
+    my $self = shift;
+    $self->routes([
+        '' =>  'index',
+        ]);
+}
+
+sub index {
     my $self     = shift;
-    my $template = $self->template;
+    my $template = $self->load_tmpl('index.htm');
     $template->param('name' => 'Alfredo');
     return $template->output;
 }
