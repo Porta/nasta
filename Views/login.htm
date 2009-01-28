@@ -1,6 +1,46 @@
-<html>
-	<head></head>
-<body>
-	<h1>Hola!, <!-- tmpl_var name="name" --></h1>
-</body>
-</html>
+<script src="js/jquery.form.js" type="text/javascript"></script>
+<script src="js/jquery.validate.min.js" type="text/javascript"></script>
+<form id="login" action="/user/login" method="post" accept-charset="utf-8">
+    <fieldset>
+    <legend>Login</legend>    
+    <p><label for="email">Email:</label> &nbsp;<input type="text" name="email" id="email" title="Please enter your email" class="required"/></p>
+    <p><label for="pass">Password:</label> &nbsp;<input type="password" name="pass" id="pass" title="Please enter your password" class="required" /></p>
+	<p><input type="submit" value="Submit" /></p>
+    </fieldset>
+</form>
+	<p>Forgot your password? <span id="forgot_password_link">Click <a href="#" id="forgotpassword">here</a> to get your password</span></p>
+	<div id="forget_password" class="hidden">
+    <form id="forgotpass" action="/user/retrieve_password" method="post">
+        <fieldset>
+	    <label for="forget_password_email">Email Address:</label> <input type="text" id="forget_password_email" name="forget_password_email" />
+	    <input type="button" id="sendpassword" value="Retrieve"/>
+	    <div id="retrieve_password"></div>
+	    </fieldset>
+    </form>
+	</div>
+
+<script type="text/javascript">
+	function forgotPassword(){
+		$("#login").hide();
+		$("#forgot_password_link").hide();
+		$("#forget_password").show();
+	}
+	function sendPassword(){
+		if ($.trim($('#forget_password_email').val()) == ""){
+            notify('ERROR|Please type and email address');
+			return false;
+		}
+
+ 		$.get("/user/retrieve_password", { email: $("#forget_password_email").val() },
+ 		function(data){
+			notify(data);
+ 		});
+	}
+    $(document).ready(function(){
+	    jQuery(function() {
+		    var v = jQuery("#login").validate();
+    	});
+        $("#sendpassword").click(function(){sendPassword(); return false;});
+        $("#forgotpassword").click(function(){forgotPassword(); return false;});
+    });
+</script>

@@ -1,6 +1,86 @@
-<html>
-	<head></head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title><!--tmpl_var name="title"--></title>
+	<base href="<!-- tmpl_var name=base_url -->"/>
+	<link rel="stylesheet" href="http://fuseful.com/css/init.css" type="text/css" media="screen" charset="utf-8" />
+	<link rel="stylesheet" href="css/styles.css" type="text/css" media="screen" charset="utf-8" />
+	<script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.2.6.min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+</head>
 <body>
-	<h1>Hola!, <TMPL_VAR NAME="name"></h1>
+	<h1>SITE</h1>
+	<div id="w-main">
+		<div id="w-header">
+			<div id="header">
+				<span id="head"></span>
+				<div id="h-toolbar">
+					<div class="toolbar small">
+					<!--tmpl_if name="loggedin"-->
+						<ul>
+							<li>Logged in as: <!--tmpl_var name="loggedin"--></li>
+							<li><a href="/logout">Logout</a></li>
+							<li><a href="/faq">Faq</a></li>
+						</ul>
+					<!--tmpl_else-->
+						<ul>
+							<li><a href="/login">Login</a></li>
+							<li><a href="/user/register">Register</a></li>
+							<li><a href="/faq">Faq</a></li>
+						</ul>
+					<!--/tmpl_if-->
+					</div>
+				</div>
+				<div class="clear">&nbsp;</div>
+			</div>
+		</div>
+		<div id="w-body">
+			<div id="sidebar">
+				<!--tmpl_if name="loggedin"-->
+				<br />
+				<div><a href="/rings/yours">Rings</a></div><br/>
+				<div><a href="/units/yours">Units</a></div><br/>
+				<div><a href="/sites/yours">Sites</a></div><br/>
+				<div><a href="/members/list">Members</a></div><br/>
+				<div><a href="/stats">Stats</a></div><br/>
+				<div><a href="/user/edit">Account</a></div>
+				<!--tmpl_else-->
+				<h2>Sidebar</h2>
+				<!--/tmpl_if-->
+			</div>
+			<div id="content">
+				<br />
+				<div id="tabs"><!--tmpl_var name="tabs"--></div>
+				<!-- tmpl_if name="content_title"-->
+					<h2><!-- tmpl_var name="content_title" --></h2>
+				<!-- /tmpl_if -->
+				
+					<div id="w-notifications"><span id="notifications"><!--tmpl_var name="notifications"--></span>&nbsp;<span><img src="/Images/spinner.gif" id="spinner" alt="spinner" style="display:none;"/></span></div>
+					
+				<!--tmpl_var name="content"-->
+				<div class="clear">&nbsp;</div>
+			</div>
+		</div>
+		<div id="w-footer">
+			<div id="footer">
+				<div class="clear">&nbsp;</div>
+				<span id="f-toolbar" class="toolbar data">
+					<a href="/">Home</a>
+				</span>
+				<div class="clear">&nbsp;</div>
+			</div>
+			<div class="clear">&nbsp;</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	var member = {ring: {}, site: {}, unit: {}, status: 'unsent'};
+	var ring = {name: "", description: "", width: "", height: "", rule: "", md5: ""};
+	var site = {name: "", url: "", md5: ""};
+	var unit = {text: "", img: "", md5: ""};
+	
+	<!-- tmpl_var name="js" -->
+	</script>
+<!--debug-->
 </body>
 </html>

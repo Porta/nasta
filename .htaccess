@@ -1,0 +1,14 @@
+Options +ExecCGI
+AddHandler cgi-script .cgi
+DirectoryIndex index.cgi
+
+RewriteEngine on
+
+RewriteBase /
+
+# If an actual file or directory is requested, serve directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Otherwise, pass everything through to the dispatcher
+RewriteRule ^(.*)$ /index.cgi/$1 [L,QSA]

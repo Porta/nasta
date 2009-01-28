@@ -1,11 +1,3 @@
 ---
 dispatch_debug: 1
 dispatch_prefix: Controllers
-dispath_table:
-  - '':
-      app: Home
-      rm: index
-  - login:
-      app: Home
-      rm: index
-  - :app/:rm: ''
